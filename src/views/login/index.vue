@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">后台管理系统</h3>
+        <h3 class="title">蓝色粮仓数据采集系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -45,7 +45,9 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          <svg-icon
+            :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+          />
         </span>
       </el-form-item>
 
@@ -55,10 +57,10 @@
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-      >登录</el-button>
+        >登录</el-button
+      >
     </el-form>
-    <div class="info" style="bottom: 40px;">Beta: 1.0</div>
-    <div class="info">Technical Support: XXX</div>
+    <div class="info">电子科技大学-信息与软件工程学院</div>
   </div>
 </template>
 
@@ -69,14 +71,14 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (value.length < 3) {
-        callback(new Error("Please enter the correct user name"));
+        callback(new Error("用户名错误！"));
       } else {
         callback();
       }
     };
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error("The password can not be less than 6 digits"));
+        callback(new Error("密码不能少于6位！"));
       } else {
         callback();
       }
@@ -84,7 +86,7 @@ export default {
     return {
       loginForm: {
         username: "admin",
-        password: "111111"
+        password: "123456"
       },
       loginRules: {
         username: [
@@ -160,7 +162,6 @@ export default {
 
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 .info {
   position: fixed;
   bottom: 20px;

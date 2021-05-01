@@ -1,6 +1,5 @@
 module.exports = {
-
-  title: 'Vue+Element UI后台管理模板',
+  title: "蓝色粮仓数据采集系统",
 
   /**
    * @type {boolean} true | false
@@ -13,4 +12,4 @@ module.exports = {
    * @description Whether show the logo in sidebar
    */
   sidebarLogo: false
-}
+};
