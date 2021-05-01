@@ -8,30 +8,29 @@
 
 <script>
 export default {
-  name: 'AppMain',
+  name: "AppMain",
   computed: {
     key() {
-      return this.$route.path
+      return this.$route.path;
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .app-main {
-  /*50 = navbar  */
-  min-height: calc(100vh - 50px);
+  /*50 = navbar  62顶部项目名称*/
+  min-height: calc(100vh - 112px);
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>
 
 <style lang="scss">
-// fix css style bug in open el-dialog
 .el-popup-parent--hidden {
   .fixed-header {
     padding-right: 15px;

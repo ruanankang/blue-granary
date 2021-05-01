@@ -1,16 +1,29 @@
 <template>
   <div class="root">
     <div class="search">
-      <el-input placeholder="请输入logo名称" v-model="keyword" clearable class="input-with-select">
-        <el-button @click="goSearch" slot="append" icon="el-icon-search"></el-button>
+      <el-input
+        placeholder="请输入logo名称"
+        v-model="keyword"
+        clearable
+        class="input-with-select"
+      >
+        <el-button
+          @click="goSearch"
+          slot="append"
+          icon="el-icon-search"
+        ></el-button>
       </el-input>
     </div>
     <el-table
       :data="tableData"
       style="width: 100%"
-      :default-sort="{prop: 'createDate', order: 'descending'}"
+      :default-sort="{ prop: 'createDate', order: 'descending' }"
     >
-      <el-table-column prop="name" label="logo名称" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        prop="name"
+        label="logo名称"
+        show-overflow-tooltip
+      ></el-table-column>
       <el-table-column label="上传日期" prop="createDate" sortable>
         <!-- <template slot-scope="scope">{{ scope.row.createDate }}</template> -->
       </el-table-column>
@@ -27,13 +40,20 @@
       </el-table-column>
       <el-table-column label="操作">
         <div slot-scope="scope">
-          <el-button @click="deleteLogo(scope.row.id)" size="small" type="danger" round>删除</el-button>
           <el-button
-            @click="downloadFile(scope.row.name,scope.row.imgUrl)"
+            @click="deleteLogo(scope.row.id)"
+            size="small"
+            type="danger"
+            round
+            >删除</el-button
+          >
+          <el-button
+            @click="downloadFile(scope.row.name, scope.row.imgUrl)"
             size="small"
             type="primary"
             round
-          >下载</el-button>
+            >下载</el-button
+          >
         </div>
       </el-table-column>
     </el-table>
@@ -47,7 +67,12 @@
       @prev-click="pageChange"
       @next-click="pageChange"
     ></el-pagination>
-    <el-upload class="upload template" :headers="headers" action="http://219.228.76.43:8886/admin/upload" :on-success="uploadSuccess">
+    <el-upload
+      class="upload template"
+      :headers="headers"
+      action="http://219.228.76.43:8886/admin/upload"
+      :on-success="uploadSuccess"
+    >
       <el-button size="small" type="primary">上传logo</el-button>
       <div slot="tip" class="el-upload__tip">.png格式 尺寸200*200以内</div>
     </el-upload>
@@ -58,13 +83,13 @@
 export default {
   data() {
     return {
-      keyword:'',
+      keyword: "",
       pageSize: 6,
       total: 6, // task总数
       srcList: [],
       tableData: [],
-      headers:{
-        token:localStorage.getItem('token')
+      headers: {
+        token: localStorage.getItem("token")
       }
     };
   },
@@ -86,7 +111,7 @@ export default {
         res => {
           console.log("res :", res);
           that.total = res.data.total;
-          let tableData = res.data.data;
+          let tableData = res.data.data || [];
           for (let i = 0; i < tableData.length; i++) {
             tableData[i].createDate = that.getTime(tableData[i].createDate);
           }
